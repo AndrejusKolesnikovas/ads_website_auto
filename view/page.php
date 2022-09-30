@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Ads website auto</title>
+    <link rel="stylesheet" href="./view/style.css">
+</head>
 <body>
 <header>
-    <nav style="display: flex; flex-direction: column;justify-content: center;
-     align-items: center; height: 15vh;background-color: antiquewhite">
+    <nav class="H-nav">
 
-        <a href="#" style="color: blueviolet; font-size: 20px; font-weight: bold"> Ads_website_auto</a>
+        <a href="#"> Ads_website_auto</a>
 
-        <div style="display: flex; align-content: space-between; justify-content: space-around; width: 100%; padding: 2vh ">
-            <a href="/list" style="color: blueviolet">List ads </a>
-            <a href="/login" style="color: blueviolet">Login </a>
-            <a href="/registration" style="color: blueviolet">Register </a>
+        <div>
+            <a href="/list" >List ads </a>
+            <a href="/login" >Login </a>
+            <a href="/registration" >Register </a>
         </div>
     </nav>
 

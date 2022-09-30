@@ -1,0 +1,24 @@
+.H-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+    background-color: antiquewhite
+}
+
+.H-nav div {
+    display: flex;
+    align-content: space-between;
+    justify-content: space-around;
+    width: 100%;
+    padding: 2vh
+}
+
+a {
+    color: blueviolet;
+    font-weight: bold
+}
+.H-nav > a{
+    font-size: 20px;
+}
