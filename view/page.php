@@ -1,3 +1,16 @@
+<?php
+$email=null;
+$userId=$_SESSION['user_id'] ?? null;
+
+if (isset($userId)){
+    $users = json_decode(file_get_contents('./data/user.json'), true);
+    if(isset($users[$userId])){
+        $user=$users[$userId];
+        $email=$user['email'];
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +27,11 @@
             <a href="/list" >List ads </a>
             <a href="/login" >Login </a>
             <a href="/registration" >Register </a>
+            <p>
+                <?php
+                echo $email;
+                ?>
+            </p>
         </div>
     </nav>
 

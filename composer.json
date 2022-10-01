@@ -1,0 +1,17 @@
+{
+    "name": "andrejus/ads_website_auto",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Andrejus\\AdsWebsiteAuto\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "AndrejusKolesnikovas",
+            "email": "andrejuskolesnikovas@yahoo.com"
+        }
+    ],
+    "require": {}
+}
