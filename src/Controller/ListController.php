@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Andrejus\AdsWebsiteAuto\Controller;
 
-class ListController
+
+class ListController extends Controller
 {
     public function showList():void
     {
     $data = json_decode(file_get_contents('./data/ads.json'), true);
-    $inner = './view/list.php';
+    $this->render('./view/list.php',$data);
 
-        require './view/page.php';
     }
 
 }

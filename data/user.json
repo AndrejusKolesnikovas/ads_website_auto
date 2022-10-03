@@ -12,5 +12,12 @@
         "phone_number": "+37061234256",
         "created_at": "2022-09-30 20:05:44",
         "updated_at": null
+    },
+    "2": {
+        "email": "mam@mam.lt",
+        "password": "$2y$10$zAB056QgV4JVg.biZ1a.VOVu7aJONzO.fRvGYj46Dq0a47lRvt\/b.",
+        "phone_number": "+37069874231",
+        "created_at": "2022-10-03 19:25:02",
+        "updated_at": null
     }
 }

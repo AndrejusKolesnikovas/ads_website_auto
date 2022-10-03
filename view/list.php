@@ -1,5 +1,5 @@
-<?php /** @var array $data */
-foreach ($data as $item): ?>
+<?php /** @var array $templateData */
+foreach ($templateData as $item): ?>
 
         <div>
             <h2 id="carName"><?php echo $item['title'] ?> </h2>

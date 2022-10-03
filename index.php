@@ -2,67 +2,42 @@
 
 declare(strict_types=1);
 
-use Andrejus\AdsWebsiteAuto\Controller\ListController;
 use Andrejus\AdsWebsiteAuto\Controller\AuthController;
+use Andrejus\AdsWebsiteAuto\Controller\ListController;
+use Andrejus\AdsWebsiteAuto\Router;
 
 require 'vendor/autoload.php';
 
 session_start();
-$requestPath = $_SERVER['REQUEST_URI'];
-$requestMethod = $_SERVER['REQUEST_METHOD'];
 
-if ($requestPath === '/list') {
-    $controller = new ListController();
-    $controller->showList();
-    die();
-} else if ($requestPath === '/registration') {
-    if ($requestMethod === 'GET') {
-        $controller = new AuthController();
-        $controller->showRegistration();
-        die;
-    } else if ($requestMethod === 'POST') {
-        $controller = new AuthController();
-        $controller->handleRegistration();
-        die;
+$router = new Router();
+$router->add('GET', '/list', function () {
+    (new ListController())->showList();
+});
 
-    } else {
-        die('Unknown request type');
-    }
-} else if ($requestPath === '/login') {
-    if ($requestMethod === 'GET') {
+$router->add('GET', '/login', function () {
+    (new AuthController())->showLogin();
+});
 
-        $inner = './view/login.php';
+$router->add('POST', '/login', function () {
+    (new AuthController())->handleLogin();
+});
 
-    } else if ($requestMethod === 'POST') {
-        $users = json_decode(file_get_contents('./data/user.json'), true);
+$router->add('GET', '/registration', function () {
+    (new AuthController())->showRegistration();
+});
 
-        $_SESSION['logged_in'] = false;
-        foreach ($users as $id => $user) {
-            if ($user['email'] === $_POST['email']
-                && password_verify($_POST['password'], $user['password'])) {
+$router->add('POST', '/registration', function () {
+    (new AuthController())->handleRegistration();
+});
 
-                /*
-              issaugoti vartotojo duomenis i sesija. id ir ar prisijunges
-              pvz.:
-              $_SESSION['logged_in'] = true;
-              $_SESSION['user_id'] = 1;
-              */
-                $_SESSION['logged_in'] = true;
-                $_SESSION['user_id'] = $id;
-
-                header('Location: /list');
-//                $inner = './view/list.php';
-                die();
-
-            }
-        }
-        die('Invalid username or password');
-
-
-    }
-} else if ($requestPath === '/view/style.css') {
+$router->add('GET', '/view/style.css', function () {
     require './view/style.css';
     header('Content-Type: text/css');
-    die;
-}
-require './view/page.php';
+});
+
+$router->add('GET', '/', function () {
+    require './view/page.php';
+});
+
+$router->route($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);

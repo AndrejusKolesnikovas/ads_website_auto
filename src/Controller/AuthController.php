@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace Andrejus\AdsWebsiteAuto\Controller;
 
-class AuthController
+class AuthController extends Controller
 {
-    public function showRegistration():void
+    public function showRegistration(): void
     {
-        $inner = './view/registration.php';
+        $this->render('./view/registration.php');
 
-        require './view/page.php';
     }
-    public function handleRegistration():void
-    { $users = json_decode(file_get_contents('./data/user.json'), true);
+
+    public function handleRegistration(): void
+    {
+        $users = json_decode(file_get_contents('./data/user.json'), true);
 
         /*
         todo: uztikrinti, kad naujai kuriamo vartotojo emailas neegzistuoja;
@@ -24,7 +25,7 @@ class AuthController
             'email' => $_POST['email'],
             'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
             'phone_number' => $_POST['phone_number'],
-            'created_at' => (new DateTime())->format('Y-m-d H:i:s'),
+            'created_at' => (new \DateTime())->format('Y-m-d H:i:s'),
             'updated_at' => null,
         ];
 
@@ -40,7 +41,39 @@ class AuthController
         file_put_contents('./data/user.json', json_encode($users, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT));
 
         header('Location: /login');
-        
+
     }
 
+    public function showLogin():void
+    {
+        $this->render('./view/login.php');
+
+    }
+
+    public function handleLogin(): void
+    {
+        $users = json_decode(file_get_contents('./data/user.json'), true);
+
+        $_SESSION['logged_in'] = false;
+        foreach ($users as $id => $user) {
+            if ($user['email'] === $_POST['email']
+                && password_verify($_POST['password'], $user['password'])) {
+
+                /*
+              issaugoti vartotojo duomenis i sesija. id ir ar prisijunges
+              pvz.:
+              $_SESSION['logged_in'] = true;
+              $_SESSION['user_id'] = 1;
+              */
+                $_SESSION['logged_in'] = true;
+                $_SESSION['user_id'] = $id;
+
+                header('Location: /list');
+//                $inner = './view/list.php';
+                return;
+
+            }
+        }
+        die('Invalid username or password');
+    }
 }
