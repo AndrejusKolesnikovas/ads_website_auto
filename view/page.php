@@ -15,7 +15,7 @@ if (isset($userId)){
 <html>
 <head>
     <title>Ads website auto</title>
-    <link rel="stylesheet" href="./view/style.css">
+    <link rel="stylesheet" href="/view/style.css">
 </head>
 <body>
 <header>
@@ -24,14 +24,23 @@ if (isset($userId)){
         <a href="#"> Ads_website_auto</a>
 
         <div>
-            <a href="/list" >List ads </a>
+            <?php if ($userId !== null): ?>
+                <a href="/ads/create" >Create new ad </a>
+            <?php endif; ?>
+            <a href="/ads/list" >List ads </a>
+
+            <?php if ($userId === null): ?>
             <a href="/login" >Login </a>
-            <a href="/registration" >Register </a>
+            <a href="/registration">Register </a>
+
+            <?php else: ?>
+
+            <a href="/logout" >Logout </a>
+
             <p>
-                <?php
-                echo $email;
-                ?>
+                <?= $email ?>
             </p>
+            <?php endif; ?>
         </div>
     </nav>
 

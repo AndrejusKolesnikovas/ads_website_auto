@@ -67,8 +67,13 @@ class AuthController extends Controller
               */
                 $_SESSION['logged_in'] = true;
                 $_SESSION['user_id'] = $id;
+?>
 
-                header('Location: /list');
+                <?php
+
+
+
+                header('Location: /ads/list');
 //                $inner = './view/list.php';
                 return;
 
@@ -76,4 +81,14 @@ class AuthController extends Controller
         }
         die('Invalid username or password');
     }
+
+    public function logout():void
+    {
+        session_unset();
+        session_destroy();
+        setcookie(session_name(), '', 0, '/');
+
+        header('Location: /login');
+    }
+
 }

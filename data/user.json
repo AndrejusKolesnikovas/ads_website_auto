@@ -19,5 +19,12 @@
         "phone_number": "+37069874231",
         "created_at": "2022-10-03 19:25:02",
         "updated_at": null
+    },
+    "3": {
+        "email": "test@test.lt",
+        "password": "$2y$10$73VglcOBiE.vzJENh5R7LOjN32LHstvBTQxR8vxCR8MokvrbGIB6y",
+        "phone_number": "+37069874231",
+        "created_at": "2022-10-05 17:34:38",
+        "updated_at": null
     }
 }

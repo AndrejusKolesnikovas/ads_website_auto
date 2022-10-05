@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Andrejus\AdsWebsiteAuto;
 
 use Andrejus\AdsWebsiteAuto\Controller\AuthController;
-use Andrejus\AdsWebsiteAuto\Controller\ListController;
+use Andrejus\AdsWebsiteAuto\Controller\AdsController;
 
 class Router
 {

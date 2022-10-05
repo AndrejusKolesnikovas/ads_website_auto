@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Andrejus\AdsWebsiteAuto\Controller\AuthController;
-use Andrejus\AdsWebsiteAuto\Controller\ListController;
+use Andrejus\AdsWebsiteAuto\Controller\AdsController;
 use Andrejus\AdsWebsiteAuto\Router;
 
 require 'vendor/autoload.php';
@@ -11,8 +11,8 @@ require 'vendor/autoload.php';
 session_start();
 
 $router = new Router();
-$router->add('GET', '/list', function () {
-    (new ListController())->showList();
+$router->add('GET', '/ads/list', function () {
+    (new AdsController())->showList();
 });
 
 $router->add('GET', '/login', function () {
@@ -22,6 +22,9 @@ $router->add('GET', '/login', function () {
 $router->add('POST', '/login', function () {
     (new AuthController())->handleLogin();
 });
+$router->add('GET', '/logout', function () {
+    (new AuthController())->logout();
+});
 
 $router->add('GET', '/registration', function () {
     (new AuthController())->showRegistration();
@@ -29,6 +32,12 @@ $router->add('GET', '/registration', function () {
 
 $router->add('POST', '/registration', function () {
     (new AuthController())->handleRegistration();
+});
+$router->add('GET', '/ads/create', function () {
+    (new AdsController())->showCreateAds();
+});
+$router->add('POST', '/ads/create', function () {
+    (new AdsController())->handleCreateAds();
 });
 
 $router->add('GET', '/view/style.css', function () {

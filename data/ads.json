@@ -16,5 +16,25 @@
         "phone_number": "+37013245678",
         "created_at": "2022-06-28 01:15",
         "updated_at": "2022-07-01 01:15"
+    },
+    "3": {
+        "user_id": 1,
+        "title": "Porshe",
+        "description": "classic car",
+        "price": "5000000",
+        "city": "Kaunas",
+        "phone_number": "+37061234256",
+        "created_at": "2022-10-04 20:22:36",
+        "updated_at": "2022-11-05 21:22:36"
+    },
+    "4": {
+        "user_id": 1,
+        "title": "volvo",
+        "description": "safe car",
+        "price": "263000",
+        "city": "Klaipeda",
+        "phone_number": "+37065489687",
+        "created_at": "2022-10-05 17:17:50",
+        "updated_at": null
     }
 }
